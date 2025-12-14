@@ -14,8 +14,9 @@ export OSH="$HOME/.oh-my-bash"
 # Path to neovim installation.
 export PATH="$PATH:/opt/nvim-linux64/bin"
 
+# TODO: template
 # Add texlive to PATH
-export PATH="$PATH:/usr/local/texlive/2025/bin/x86_64-linux"
+#export PATH="$PATH:/usr/local/texlive/2025/bin/x86_64-linux"
 
 # Add my user script folder to my PATH
 export PATH="$PATH:$HOME/bin"
@@ -98,9 +99,6 @@ OMB_USE_SUDO=true
 # Add wisely, as too many completions slow down shell startup.
 completions=(
   git
-  docker
-  docker-compose
-  tmux
   ssh
   pip3
 )
@@ -113,10 +111,11 @@ completions=(
 # general
 #)
 
+#TODO: I don't get this?
 # tmux Start up configuration
-[[ $- != *i* ]] && return
+#[[ $- != *i* ]] && return
 # Otherwise start tmux
-[[ -z "$TMUX" ]] && exec tmux
+#[[ -z "$TMUX" ]] && exec tmux
 
 # Personal
 alias l="ls -alh"
@@ -199,16 +198,16 @@ source "$OSH"/oh-my-bash.sh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init - bash)"
+#export PYENV_ROOT="$HOME/.pyenv"
+#[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+#eval "$(pyenv init - bash)"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 . "$HOME/.cargo/env"
 
-. "$HOME/.atuin/bin/env"
+#. "$HOME/.atuin/bin/env"
 
-[[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
-eval "$(atuin init bash)"
+#[[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
+#eval "$(atuin init bash)"
