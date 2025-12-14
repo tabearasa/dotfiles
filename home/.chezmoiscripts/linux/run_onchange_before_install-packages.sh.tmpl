@@ -1,0 +1,15 @@
+{{ if eq .chezmoi.osRelease.id "debian" -}}
+#!/bin/sh
+
+{{ $packages := list
+    "tmux"
+    "git"
+    "neovim"
+    "zsh"
+-}}
+
+set -e pipefail
+
+sudo apt-get update
+sudo apt-get install -y {{$packages | join " " }}
+{{ end -}}
