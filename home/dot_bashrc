@@ -156,7 +156,7 @@ alias dcd="docker compose down"  # stop the docker compose process
 alias dcrs="docker compose down && docker compose up -d" # restart the docker compose
 
 # Vim, Vi & Neovim
-# I want neovim!
+# I want neovim
 alias vi="nvim"
 alias vim="nvim"
 
