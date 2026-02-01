@@ -1,0 +1,16 @@
+[user]
+    # Default identity (depends on the work or personal machine)
+    {{ if eq .chezmoi.username "tabula" -}}
+    name = {{ .github_name | quote  }}
+    email = {{ .github_email | quote }}
+    {{ else }}
+    name = {{ .git_work_name | quote }}
+    email = {{ .work_email | quote }}
+    {{ end }}
+
+# Always include github config for personal projects
+[includeIf "gitdir:~/github/"]
+    path = "~/.gitconfig_personal"
+
+[init]
+    defaultBranch = main
