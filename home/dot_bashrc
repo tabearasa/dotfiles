@@ -20,6 +20,7 @@ export PATH="$PATH:/opt/nvim-linux64/bin"
 
 # Add my user script folder to my PATH
 export PATH="$PATH:$HOME/bin"
+export PATH="$HOME/.local/bin:$PATH"
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-bash is loaded.
@@ -171,3 +172,4 @@ export NVM_DIR="$HOME/.nvm"
 if [ -f ~/.bash_aliases ]; then
 . ~/.bash_aliases
 fi
+
