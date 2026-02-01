@@ -1,5 +1,11 @@
-{{- $name := promptString "name" -}}
+{{- $github_name := promptStringOnce "github_name" -}}
+{{- $email := promptStringOnce "email" -}}
+{{- $git_work_name := promptStringOnce "git_work_name" -}}
+{{- $work_email := promptStringOnce "work_email" -}}
+
 
 [data]
-    name = "{{ $name }}"
-
+    github_name = "{{ $github_name }}"
+    email = "{{ $email }}"
+    git_work_name = "{{ $git_work_name }}"
+    work_email = "{{ $work_email }}"
