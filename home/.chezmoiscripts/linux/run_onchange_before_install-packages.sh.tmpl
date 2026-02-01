@@ -8,12 +8,23 @@ set -e pipefail
     "git"
     "neovim"
     "zsh"
+    "ca-certificates"
+    "curl"
 -}}
 
+# Install General packages for debian-based systems
+sudo apt-get install -y {{$general_packages | join " " }}
+{{ end -}}
+
+#TODO: install docker (https://docs.docker.com/engine/install/debian/#install-from-a-package)
+
+# Install Personal packages
 {{ if eq .chezmoi.username "tabula" -}}
+
 {{ $personal_packages := list
     "spotify-client"
 -}}
+
 
 # Adding personal package sources list
 curl -sS https://download.spotify.com/debian/pubkey_5384CE82BA52C83A.asc | sudo gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/spotify.gpg
@@ -23,9 +34,11 @@ sudo apt-get update
 # Install Personal packages for debian-based systems
 sudo apt-get install -y {{$personal_packages | join " " }}
 
-#TODO: add rust to the script
+# Install Rust on personal machines
 # https://doc.rust-lang.org/cargo/getting-started/installation.html
-# curl https://sh.rustup.rs -sSf | sh
+if [ ! command -v rustc >/dev/null 2>&1 ]; then
+    curl https://sh.rustup.rs -sSf | sh
+fi
 
 # Install alacritty for personal debian-based systems
 # https://github.com/alacritty/alacritty/blob/master/INSTALL.md
@@ -33,17 +46,10 @@ if [ ! -d "~/github/alacritty"]; then
     echo "test"
     git clone https://github.com/alacritty/alacritty.git
     cd alacritty
+    # Dependencies
     sudo apt-get install -y cmake g++ pkg-config libfontconfig1-dev libxcb-xfixes0-dev libxkbcommon-dev python3
     cargo build --releaese
 fi
-
-# TODO: install docker
-sudo apt install docker.io
-# next: add current user to the docker group
-sudo groupadd docker
-sudo usermod -aG docker $USER
-# reload the groups without logging out and in again:
-# newgrp docker
 
 # TODO: install obsidian
 # requires fuse 2.x alongside 3.x on debian trixie system https://docs.appimage.org/user-guide/troubleshooting/fuse.html#ref-install-fuse
@@ -63,6 +69,3 @@ sudo usermod -aG docker $USER
 # curl -OL https://github.com/ryanoasis/nerd-fonts/releases/latest/download/FiraCode.zip
 {{ end -}}
 
-# Install General packages for debian-based systems
-sudo apt-get install -y {{$general_packages | join " " }}
-{{ end -}}
