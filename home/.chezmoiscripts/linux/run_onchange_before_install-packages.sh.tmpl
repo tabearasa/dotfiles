@@ -37,14 +37,22 @@ if [ ! -d "~/github/alacritty"]; then
     cargo build --releaese
 fi
 
+# TODO: install docker
+sudo apt install docker.io
+# next: add current user to the docker group
+sudo groupadd docker
+sudo usermod -aG docker $USER
+# reload the groups without logging out and in again:
+# newgrp docker
+
 # TODO: install obsidian
 # requires fuse 2.x alongside 3.x on debian trixie system https://docs.appimage.org/user-guide/troubleshooting/fuse.html#ref-install-fuse
 # otherwise install the appimage by downloading it
 # run:
 # chmod u+x Obsidian-<version>.AppImage
 # ./Obsidian-<version>.AppImage --no-sandbox
-# TODO: add a shortcut for obsidian and an icon?
 
+# TODO: add a shortcut for obsidian and an icon?
 # sudo cp target/release/alacritty /usr/local/bin # or anywhere else in $PATH
 # sudo cp extra/logo/alacritty-term.svg /usr/share/pixmaps/Alacritty.svg
 # sudo desktop-file-install extra/linux/Alacritty.desktop
