@@ -1,3 +1,8 @@
+{{- if eq .chezmoi.username "tabula" }}
+# Use zsh as default shell
+set-option -g default-shell /bin/zsh
+{{ end }}
+
 # remap prefix from 'C-b' to 'C-a'
 unbind C-b
 set-option -g prefix C-a
