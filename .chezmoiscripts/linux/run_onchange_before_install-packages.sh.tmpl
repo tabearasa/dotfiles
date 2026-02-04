@@ -1,6 +1,5 @@
-{{ if or (eq .chezmoi.osRelease.id "debian") (eq .chezmoi.osRelase.id "ubuntu")  -}}
-# Template for debian/ubuntu based systems
 #!/bin/sh
+{{ if or (eq .chezmoi.osRelease.id "debian") (eq .chezmoi.osRelase.id "ubuntu")  -}}
 
 set -e pipefail
 
@@ -43,13 +42,13 @@ fi
 
 # Install alacritty for personal debian-based systems
 # https://github.com/alacritty/alacritty/blob/master/INSTALL.md
-if [ ! -d "~/github/alacritty"]; then
+if [ ! -d "$HOME/github/alacritty"]; then
     echo "test"
     git clone https://github.com/alacritty/alacritty.git
     cd alacritty
     # Dependencies
     sudo apt-get install -y cmake g++ pkg-config libfontconfig1-dev libxcb-xfixes0-dev libxkbcommon-dev python3
-    cargo build --releaese
+    cargo build --release
 fi
 
 # Install NVM
