@@ -130,6 +130,8 @@ completions=(
 # general
 #)
 
+source $HOME/.aliases
+
 # Start tmux per default, if it is installed and not already running
 if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
     exec tmux
@@ -171,8 +173,3 @@ source "$OSH"/oh-my-bash.sh
 
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
-
-# Add bash aliases
-if [ -f ~/.bash_aliases ]; then
-. ~/.bash_aliases
-fi
