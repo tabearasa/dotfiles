@@ -14,13 +14,36 @@ export OSH="$HOME/.oh-my-bash"
 # Path to neovim installation.
 export PATH="$PATH:/opt/nvim-linux64/bin"
 
-# TODO: template
-# Add texlive to PATH
-#export PATH="$PATH:/usr/local/texlive/2025/bin/x86_64-linux"
-
 # Add my user script folder to my PATH
 export PATH="$PATH:$HOME/bin"
 export PATH="$HOME/.local/bin:$PATH"
+
+{{ if eq .chezmoi.username "tabula"}}
+# TODO: Add texlive to PATH
+#export PATH="$PATH:/usr/local/texlive/2025/bin/x86_64-linux"
+
+# Add NVM
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Add cargo
+. "$HOME/.cargo/env"
+
+# TODO: Add atuin
+#. "$HOME/.atuin/bin/env"
+
+#[[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
+#eval "$(atuin init bash)"
+
+# Add pnpm
+export PNPM_HOME="$HOME/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+
+{{ end }}
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-bash is loaded.
@@ -154,22 +177,7 @@ source "$OSH"/oh-my-bash.sh
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
 
-#export PYENV_ROOT="$HOME/.pyenv"
-#[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-#eval "$(pyenv init - bash)"
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-. "$HOME/.cargo/env"
-
-#. "$HOME/.atuin/bin/env"
-
-#[[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
-#eval "$(atuin init bash)"
-
 # Add bash aliases
 if [ -f ~/.bash_aliases ]; then
 . ~/.bash_aliases
 fi
-
