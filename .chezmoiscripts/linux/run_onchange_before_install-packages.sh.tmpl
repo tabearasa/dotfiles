@@ -1,4 +1,5 @@
-{{ if eq .chezmoi.osRelease.id "debian" -}}
+{{ if or (eq .chezmoi.osRelease.id "debian") (eq .chezmoi.osRelase.id "ubuntu")  -}}
+# Template for debian/ubuntu based systems
 #!/bin/sh
 
 set -e pipefail
@@ -21,12 +22,12 @@ sudo apt-get install -y {{$general_packages | join " " }}
 # Install Personal packages
 {{ if eq .chezmoi.username "tabula" -}}
 
+# Adding personal package sources list
 {{ $personal_packages := list
     "spotify-client"
 -}}
 
-
-# Adding personal package sources list
+# Spotify
 curl -sS https://download.spotify.com/debian/pubkey_5384CE82BA52C83A.asc | sudo gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/spotify.gpg
 echo "deb https://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
 sudo apt-get update
@@ -51,6 +52,9 @@ if [ ! -d "~/github/alacritty"]; then
     cargo build --releaese
 fi
 
+# Install NVM
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.4/install.sh | bash
+
 # TODO: install obsidian
 # requires fuse 2.x alongside 3.x on debian trixie system https://docs.appimage.org/user-guide/troubleshooting/fuse.html#ref-install-fuse
 # otherwise install the appimage by downloading it
@@ -68,4 +72,3 @@ fi
 # TODO: use the regular font and not the mono font!!
 # curl -OL https://github.com/ryanoasis/nerd-fonts/releases/latest/download/FiraCode.zip
 {{ end -}}
-
