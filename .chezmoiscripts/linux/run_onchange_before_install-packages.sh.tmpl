@@ -52,9 +52,37 @@ if [ ! -d "$HOME/github/alacritty"]; then
 fi
 
 
-# TODO: install obsidian
-# requires fuse 2.x alongside 3.x on debian trixie system https://docs.appimage.org/user-guide/troubleshooting/fuse.html#ref-install-fuse
-# otherwise install the appimage by downloading it
+# ======== Install personal AppImages ========
+# ======== Obsidian
+# Obsidian Icon can be downloaded from: https://obsidian.md/blog/new-obsidian-icon/
+# Requires fuse 2.x alongside 3.x on debian trixie system https://docs.AppImage.org/user-guide/troubleshooting/fuse.html#ref-install-fuse
+
+mkdir -p $HOME/.local/bin
+mkdir -p $HOME/.local/share/applications/
+mkdir -p $HOME/Applications
+
+OBSIDIAN_VERSION=1.11.7
+OBSIDIAN_APPIMAGE_FILE=Obsidian-$OBSIDIAN_VERSION.AppImage
+OBSIDIAN_APPIMAGE_PATH=$HOME/Applications/$OBSIDIAN_APPIMAGE_FILE
+OBSIDIAN_ICON_PATH=$HOME/Applications/obsidian-icon.png #This needs to be manually done
+
+echo " ======Downloading $OBSIDIAN_APPIMAGE_FILE ====="
+#TODO: Check, if it is safe to follow redirects
+curl -L --output $OBSIDIAN_APPIMAGE_PATH \
+    https://github.com/obsidianmd/obsidian-releases/releases/download/v$OBSIDIAN_VERSION/$OBSIDIAN_APPIMAGE_FILE
+
+chmod u+x $OBSIDIAN_APPIMAGE_PATH
+
+cat << EOF > ~/.local/share/applications/Obsidian.desktop
+[Desktop Entry]
+Version=$OBSIDIAN_VERSION
+Type=Application
+Name=Obsidian
+Exec=$OBSIDIAN_APPIMAGE_PATH
+Icon=$OBSIDIAN_ICON_PATH
+Categories=Utility;
+EOF
+
 # run:
 # chmod u+x Obsidian-<version>.AppImage
 # ./Obsidian-<version>.AppImage --no-sandbox
