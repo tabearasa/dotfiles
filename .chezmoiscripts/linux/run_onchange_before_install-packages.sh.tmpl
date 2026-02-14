@@ -1,99 +1,24 @@
 #!/bin/sh
-{{ if or (eq .chezmoi.osRelease.id "debian") (eq .chezmoi.osRelase.id "ubuntu")  -}}
 
-set -e pipefail
-
-{{ $general_packages := list
+# ========== Install Packages for Development ==========
+{{ $dev_packages := list
     "tmux"
     "git"
     "neovim"
     "zsh"
+-}}
+
+sudo apt-get install -y {{$dev_packages | join " " }}
+
+# ========== Install Packages for Networking ===========
+{{ $network_packages := list
     "ca-certificates"
     "curl"
+    "wget"
+    "gpg"
+    "nmap"
+    "mtr"
 -}}
 
-# Install General packages for debian-based systems
-sudo apt-get install -y {{$general_packages | join " " }}
-{{ end -}}
 
-#TODO: install docker (https://docs.docker.com/engine/install/debian/#install-from-a-package)
-
-# Install Personal packages
-{{ if eq .chezmoi.username "tabula" -}}
-
-# Adding personal package sources list
-{{ $personal_packages := list
-    "spotify-client"
--}}
-
-# Spotify
-curl -sS https://download.spotify.com/debian/pubkey_5384CE82BA52C83A.asc | sudo gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/spotify.gpg
-echo "deb https://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
-sudo apt-get update
-
-# Install Personal packages for debian-based systems
-sudo apt-get install -y {{$personal_packages | join " " }}
-
-# Install Rust on personal machines
-# https://doc.rust-lang.org/cargo/getting-started/installation.html
-if [ ! command -v rustc >/dev/null 2>&1 ]; then
-    curl https://sh.rustup.rs -sSf | sh
-fi
-
-# Install alacritty for personal debian-based systems
-# https://github.com/alacritty/alacritty/blob/master/INSTALL.md
-if [ ! -d "$HOME/github/alacritty"]; then
-    echo "test"
-    git clone https://github.com/alacritty/alacritty.git
-    cd alacritty
-    # Dependencies
-    sudo apt-get install -y cmake g++ pkg-config libfontconfig1-dev libxcb-xfixes0-dev libxkbcommon-dev python3
-    cargo build --release
-fi
-
-
-# ======== Install personal AppImages ========
-# ======== Obsidian
-# Obsidian Icon can be downloaded from: https://obsidian.md/blog/new-obsidian-icon/
-# Requires fuse 2.x alongside 3.x on debian trixie system https://docs.AppImage.org/user-guide/troubleshooting/fuse.html#ref-install-fuse
-
-mkdir -p $HOME/.local/bin
-mkdir -p $HOME/.local/share/applications/
-mkdir -p $HOME/Applications
-
-OBSIDIAN_VERSION=1.11.7
-OBSIDIAN_APPIMAGE_FILE=Obsidian-$OBSIDIAN_VERSION.AppImage
-OBSIDIAN_APPIMAGE_PATH=$HOME/Applications/$OBSIDIAN_APPIMAGE_FILE
-OBSIDIAN_ICON_PATH=$HOME/Applications/obsidian-icon.png #This needs to be manually done
-
-echo " ======Downloading $OBSIDIAN_APPIMAGE_FILE ====="
-#TODO: Check, if it is safe to follow redirects
-curl -L --output $OBSIDIAN_APPIMAGE_PATH \
-    https://github.com/obsidianmd/obsidian-releases/releases/download/v$OBSIDIAN_VERSION/$OBSIDIAN_APPIMAGE_FILE
-
-chmod u+x $OBSIDIAN_APPIMAGE_PATH
-
-cat << EOF > ~/.local/share/applications/Obsidian.desktop
-[Desktop Entry]
-Version=$OBSIDIAN_VERSION
-Type=Application
-Name=Obsidian
-Exec=$OBSIDIAN_APPIMAGE_PATH
-Icon=$OBSIDIAN_ICON_PATH
-Categories=Utility;
-EOF
-
-# run:
-# chmod u+x Obsidian-<version>.AppImage
-# ./Obsidian-<version>.AppImage --no-sandbox
-
-# TODO: add a shortcut for obsidian and an icon?
-# sudo cp target/release/alacritty /usr/local/bin # or anywhere else in $PATH
-# sudo cp extra/logo/alacritty-term.svg /usr/share/pixmaps/Alacritty.svg
-# sudo desktop-file-install extra/linux/Alacritty.desktop
-# sudo update-desktop-database
-
-# TODO: install fira code nerd font!!
-# TODO: use the regular font and not the mono font!!
-# curl -OL https://github.com/ryanoasis/nerd-fonts/releases/latest/download/FiraCode.zip
-{{ end -}}
+sudo apt-get install -y {{ $network_packages | join " " }}

@@ -1,0 +1,35 @@
+#!/bin/sh
+{{ if eq .chezmoi.username "tabula" -}}
+# ======== Install Personal AppImages ========
+
+# ======== Obsidian ========
+# Obsidian Icon can be downloaded from: https://obsidian.md/blog/new-obsidian-icon/
+# Requires fuse 2.x alongside 3.x on debian trixie system https://docs.AppImage.org/user-guide/troubleshooting/fuse.html#ref-install-fuse
+
+mkdir -p $HOME/.local/bin
+mkdir -p $HOME/.local/share/applications/
+mkdir -p $HOME/Applications
+
+OBSIDIAN_VERSION=1.11.7
+OBSIDIAN_APPIMAGE_FILE=Obsidian-$OBSIDIAN_VERSION.AppImage
+OBSIDIAN_APPIMAGE_PATH=$HOME/Applications/$OBSIDIAN_APPIMAGE_FILE
+# This needs to be manually downloaded
+OBSIDIAN_ICON_PATH=$HOME/Applications/obsidian-icon.png 
+
+echo " ====== Downloading $OBSIDIAN_APPIMAGE_FILE ======="
+curl --location-trusted --output $OBSIDIAN_APPIMAGE_PATH \
+    https://github.com/obsidianmd/obsidian-releases/releases/download/v$OBSIDIAN_VERSION/$OBSIDIAN_APPIMAGE_FILE
+
+chmod u+x $OBSIDIAN_APPIMAGE_PATH
+
+cat << EOF > ~/.local/share/applications/Obsidian.desktop
+[Desktop Entry]
+Version=$OBSIDIAN_VERSION
+Type=Application
+Name=Obsidian
+Exec=$OBSIDIAN_APPIMAGE_PATH
+Icon=$OBSIDIAN_ICON_PATH
+Categories=Utility;
+EOF
+
+{{- end }}
