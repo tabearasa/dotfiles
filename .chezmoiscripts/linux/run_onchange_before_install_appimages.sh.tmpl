@@ -6,7 +6,7 @@
 # Obsidian Icon can be downloaded from: https://obsidian.md/blog/new-obsidian-icon/
 # Requires fuse 2.x alongside 3.x on debian trixie system https://docs.AppImage.org/user-guide/troubleshooting/fuse.html#ref-install-fuse
 
-if [ -f ~/.local/share/applications/Obsidian.desktop]; then
+if [ -f $HOME/.local/share/applications/Obsidian.desktop ]; then
     echo "Obsidian is already installed."
 else
     mkdir -p $HOME/.local/bin
