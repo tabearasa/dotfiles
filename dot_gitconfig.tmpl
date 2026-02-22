@@ -3,7 +3,7 @@
     {{ if eq .chezmoi.username "tabula" -}}
     name = {{ .github_name | quote  }}
     email = {{ .github_email | quote }}
-    {{ else }}
+    {{ else if eq .chezmoi.company_computer "y" }}
     name = {{ .git_work_name | quote }}
     email = {{ .work_email | quote }}
     {{ end }}

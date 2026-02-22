@@ -2,6 +2,7 @@
 {{- $github_email := promptStringOnce . "github_email" "github_email" -}}
 {{- $git_work_name := promptStringOnce . "git_work_name" "git_work_name" -}}
 {{- $work_email := promptStringOnce . "work_email" "work_email" -}}
+{{- $company_computer := promptStringOnce . "company_computer" "is_this_your_company_computer_[y/n]" -}}
 
 
 [data]
@@ -9,3 +10,4 @@
     github_email = "{{ $github_email }}"
     git_work_name = "{{ $git_work_name }}"
     work_email = "{{ $work_email }}"
+    company_computer = "{{ $company_computer }}"
