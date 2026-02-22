@@ -1,9 +1,13 @@
 # Dotfiles
 
+My dotfile journal. These lines are for my future self, if I need to get a quick heads up
+for the next to be initialized machine.
+
 ## Setup
 
 ```bash
-#TBD
+# Install and already apply everythin
+sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply git@github.com:tabearasa/dotfiles.git
 ```
 
 I made for all templates a fundamental definition. My personal machines run with the
@@ -15,6 +19,9 @@ which I only utilize for my work, won't be named like this.
 ```bash
 # Convert managed dotfile to a template
 chezmoi chattr +template $FILE # must be "real dotfile"
+
+# Test template
+chezmoi execute-template < $TEMPLATE_FILE
 ```
 
 ## Personal Note
@@ -28,3 +35,9 @@ dotfile solution, that handles specific needs of yours, I can really recommend
 
 (Yeah, I know, that a comparison table provided by chezmoi in the context of dotfile management
 libraries can be biased. If you found a better source: let me know.)
+
+## TODOS
+
+* [ ] update all machines
+* [ ] add vim configs
+* [ ] stick wheter with the "tabula" username or company_computer variable
