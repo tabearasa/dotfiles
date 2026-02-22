@@ -39,5 +39,7 @@ libraries can be biased. If you found a better source: let me know.)
 ## TODOS
 
 * [ ] update all machines
+* [ ] tmux reload configuration after config change `tmux source-file ~/.tmux.conf`
+* [ ] test firacodenerdfont installation on a new system with alacritty
 * [ ] add vim configs
 * [ ] stick wheter with the "tabula" username or company_computer variable
