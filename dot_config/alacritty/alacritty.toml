@@ -1,6 +1,9 @@
 [general]
 live_config_reload = true
 
+[shell]
+program = "tmux"
+
 [window]
 opacity = 0.9
 blur = true
