@@ -1,9 +1,9 @@
 [user]
     # Default identity (depends on the work or personal machine)
-    {{ if eq .chezmoi.username "tabula" -}}
+    {{ if ne .chezmoi.data.company_computer "y" -}}
     name = {{ .github_name | quote  }}
     email = {{ .github_email | quote }}
-    {{ else if eq .company_computer "y" }}
+    {{ else }}
     name = {{ .git_work_name | quote }}
     email = {{ .work_email | quote }}
     {{ end }}

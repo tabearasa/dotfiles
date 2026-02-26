@@ -1,5 +1,5 @@
 #!/bin/sh
-{{ if eq .chezmoi.username "tabula" }}
+{{ if ne .chezmoi.data.company_computer "y" }}
 
 # Install Rust to build alacritty
 # https://doc.rust-lang.org/cargo/getting-started/installation.html
