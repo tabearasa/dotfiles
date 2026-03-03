@@ -39,3 +39,8 @@ dotfile solution, that handles specific needs of yours, I can really recommend
 (Yeah, I know, that a comparison table provided by chezmoi in the context of dotfile management
 libraries can be biased. If you found a better source: let me know.)
 
+# TODOS
+
+* [ ] install keepassxc and utilize passwords
+* [ ] add ssh configs
+* [ ] add neovim lazyvim configuration
