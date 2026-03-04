@@ -132,6 +132,11 @@ completions=(
 
 source $HOME/.aliases
 
+# Start ssh-agent if not already running
+if [ -z "$SSH_AUTH_SOCK" ]; then
+    eval "$(ssh-agent -s)" > /dev/null 2>&1
+fi
+
 # Start tmux per default, if it is installed and not already running
 if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
     exec tmux
