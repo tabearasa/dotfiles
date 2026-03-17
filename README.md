@@ -42,5 +42,3 @@ libraries can be biased. If you found a better source: let me know.)
 # TODOS
 
 * [ ] install keepassxc and utilize passwords
-* [ ] add ssh configs
-* [ ] add neovim lazyvim configuration
