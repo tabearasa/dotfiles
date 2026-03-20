@@ -46,7 +46,7 @@ Two variables control machine-type behavior (set interactively at first `chezmoi
 | `chezmoi.username == "tabula"` | Personal machine (used directly in templates) |
 | `company_computer` | String `"y"` or `"n"` (stored in chezmoi data) |
 
-Personal-only features gated behind these checks: Alacritty (built from source), Obsidian AppImage.
+Personal-only features gated behind these checks: Alacritty (built from source), Obsidian AppImage, KeePassXC secret management.
 
 ### Template Data Variables
 
@@ -55,6 +55,7 @@ Defined in `.chezmoi.toml.tmpl` and prompted once at init:
 - `github_name`, `github_email` — personal GitHub identity
 - `git_work_name`, `work_email` — work git identity
 - `company_computer` — `"y"` / `"n"` flag
+- `keepassxc_db` — path to the KeePassXC `.kdbx` database file (used for secret management)
 
 ### External Dependencies
 
@@ -90,3 +91,16 @@ Scripts run in alphabetical order; all are `run_onchange_before_*` so they re-tr
 | `dot_gitconfig_personal.tmpl` | `~/.gitconfig_personal` | Personal identity for `~/github/` |
 | `dot_tmux.conf.tmpl` | `~/.tmux.conf` | Catppuccin theme, CPU plugin, custom keybindings |
 | `dot_config/alacritty/` | `~/.config/alacritty/` | FiraCode font, terminal settings |
+
+### KeePassXC Secret Management
+
+On personal machines (`company_computer != "y"`), chezmoi is configured to use KeePassXC via `keepassxc-cli` for secret management. The `[keepassxc]` section in `.chezmoi.toml.tmpl` points to the user's `.kdbx` database.
+
+To use secrets in templates:
+
+```
+{{ (keepassxc "Entry Title").Password }}
+{{ keepassxcAttribute "Entry Title" "AttributeName" }}
+```
+
+`keepassxc-cli` will prompt for the database password once per chezmoi session.
