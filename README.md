@@ -17,6 +17,9 @@ which I only utilize for my work, won't be named like this.
 ## Personal Cheat Sheet
 
 ```bash
+# Pull latest changes from remote and apply
+chezmoi update
+
 # Convert managed dotfile to a template
 chezmoi chattr +template $FILE # must be "real dotfile"
 
@@ -36,10 +39,7 @@ dotfile solution, that handles specific needs of yours, I can really recommend
 (Yeah, I know, that a comparison table provided by chezmoi in the context of dotfile management
 libraries can be biased. If you found a better source: let me know.)
 
-## TODOS
+# TODOS
 
-* [ ] update all machines
-* [ ] tmux reload configuration after config change `tmux source-file ~/.tmux.conf`
-* [ ] test firacodenerdfont installation on a new system with alacritty
-* [ ] add vim configs
-* [ ] stick wheter with the "tabula" username or company_computer variable
+* [ ] neovim installation
+

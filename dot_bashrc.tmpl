@@ -18,7 +18,7 @@ export PATH="$PATH:/opt/nvim-linux64/bin"
 export PATH="$PATH:$HOME/bin"
 export PATH="$HOME/.local/bin:$PATH"
 
-{{ if eq .chezmoi.username "tabula"}}
+{{ if ne .company_computer "y" }}
 # TODO: Add texlive to PATH
 #export PATH="$PATH:/usr/local/texlive/2025/bin/x86_64-linux"
 
@@ -131,6 +131,11 @@ completions=(
 #)
 
 source $HOME/.aliases
+
+# Start ssh-agent if not already running
+if [ -z "$SSH_AUTH_SOCK" ]; then
+    eval "$(ssh-agent -s)" > /dev/null 2>&1
+fi
 
 # Start tmux per default, if it is installed and not already running
 if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then

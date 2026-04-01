@@ -10,6 +10,14 @@
     type = "git-repo"
     url = "https://github.com/tmux-plugins/tmux-cpu.git"
     refreshPeriod = "720h"
+[".config/tmux/plugins/battery"]
+    type = "git-repo"
+    url = "https://github.com/tmux-plugins/tmux-battery.git"
+    refreshPeriod = "720h"
+[".zplug"]
+    type = "git-repo"
+    url = "https://github.com/zplug/zplug"
+    refreshPeriod = "720h"
 [".oh-my-zsh"]
     type = "archive"
     url = "https://github.com/ohmyzsh/ohmyzsh/archive/master.tar.gz"
