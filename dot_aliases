@@ -29,3 +29,10 @@ alias dsa="docker stop $(docker ps -q)" # Stop all docker containers
 alias dcu="docker compose up -d"
 alias dcd="docker compose down"
 alias dcrs="docker compose down && docker compose up -d"
+#TODO: add another shortcut for docker-compose.dev.yaml and docker-compose.test.yaml workflows
+
+# Drop uncommited changes (excludes directories)
+alias gdrop="git clean -f"
+
+# Custom git alias
+alias ghash="git rev-parse HEAD | xclip -selection clipboard"
