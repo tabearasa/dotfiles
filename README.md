@@ -38,3 +38,8 @@ dotfile solution, that handles specific needs of yours, I can really recommend
 (Yeah, I know that a comparison table provided by chezmoi in the context of dotfile management
 libraries can be biased. If you found a better source: let me know.)
 
+## TODOs
+
+I don't need issues for this personal project, just a TODO list.
+
+* [ ] add glab skill for getting the image from a issue into the context.
