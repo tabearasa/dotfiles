@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Chezmoi
+alias cm="chezmoi"
+
 # Add general aliases or environment variables
 # Neovim
 alias vi="nvim"
