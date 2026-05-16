@@ -24,6 +24,10 @@ chezmoi chattr +template $FILE # must be "real dotfile"
 
 # Test template
 chezmoi execute-template < $TEMPLATE_FILE
+
+# Re-add a modified file from the target state (with safety mechanisms)
+# Useful for NVIM
+chezmoi re-add
 ```
 
 ## Personal Note
@@ -37,4 +41,8 @@ dotfile solution, that handles specific needs of yours, I can really recommend
 
 (Yeah, I know that a comparison table provided by chezmoi in the context of dotfile management
 libraries can be biased. If you found a better source: let me know.)
+
+## TODOs
+
+* [ ] write potential feature about removing deleted files from externally managed repos? `deleted file mode 100644`?
 
