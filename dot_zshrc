@@ -142,4 +142,11 @@ fi
 
 # Custom color overrides — preserved across `p10k configure` runs.
 [[ ! -f ~/.p10k.colors.zsh ]] || source ~/.p10k.colors.zsh
+#
+# pnpm
+export PNPM_HOME="/home/tabula/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
 
