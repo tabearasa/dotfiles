@@ -5,6 +5,8 @@
 {{- $company_computer := promptStringOnce . "company_computer" "is_this_your_company_computer_[y/n]" -}}
 {{- $keepassxc_db := promptStringOnce . "keepassxc_db" "path_to_keepassxc_database" -}}
 
+[edit]
+    command = "nvim"
 
 [data]
     github_name = "{{ $github_name }}"
