@@ -8,6 +8,10 @@
 [edit]
     command = "nvim"
 
+[git]
+    autocCommit = true
+    commitMessageTemplate = "{{ promptString \"Commit message\" }}"
+
 [data]
     github_name = "{{ $github_name }}"
     github_email = "{{ $github_email }}"
