@@ -5,6 +5,9 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# Quit the warning for the instant prompt
+typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
+
 # TODO
 # Skip P10k entirely in VSCode-Insiders, as there is bug for the terminal
 # usage of copilot
