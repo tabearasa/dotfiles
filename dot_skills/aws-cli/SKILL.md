@@ -1,6 +1,7 @@
 ---
 name: aws-cli
 description: How to use the aws cli
+allowed-tools: Bash, read
 ---
 
 # AWS CLI Skills & References
@@ -14,4 +15,5 @@ This skill contains documentation for various AWS services. Each service has its
 
 ### Edge & IoT
 - **[Greengrass V2](./references/greengrass.md)** - Local compute, messaging, and ML inference for edge devices
+- Use for greengrass as the default the region `eu-central-1`
 

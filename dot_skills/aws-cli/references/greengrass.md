@@ -22,7 +22,6 @@ AWS IoT Greengrass brings local compute, messaging, data management, sync, and M
 
 ### Component Management
 - `create-component-version` - Create a new component version
-- `delete-component` - Delete a component
 - `describe-component` - Get component details
 - `get-component` - Retrieve component metadata
 - `get-component-version-artifact` - Download component version artifacts
