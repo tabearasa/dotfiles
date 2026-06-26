@@ -1,3 +1,5 @@
+plugins=(git direnv ssh-agent zsh-autosuggestions zsh-syntax-highlighting)
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -98,7 +100,7 @@ ENABLE_CORRECTION="true"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git direnv ssh-agent zsh-autosuggestions zsh-syntax-highlighting)
+#plugins=(git direnv ssh-agent zsh-autosuggestions zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -142,4 +144,11 @@ fi
 
 # Custom color overrides — preserved across `p10k configure` runs.
 [[ ! -f ~/.p10k.colors.zsh ]] || source ~/.p10k.colors.zsh
+#
+# pnpm
+export PNPM_HOME="/home/tabula/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
 

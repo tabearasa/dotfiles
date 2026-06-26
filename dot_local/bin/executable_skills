@@ -1,0 +1,94 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+CHEZMOI_SOURCE_DIR=$(chezmoi source-path)
+EXTERNALS_FILE="$CHEZMOI_SOURCE_DIR/.chezmoiexternal.toml"
+
+usage() {
+  echo "Usage: skills <command> [args]"
+  echo ""
+  echo "Commands:"
+  echo "  add <git-url> [target-path]  Add a git repo to the SKILLS section as an agent skill."
+  echo "  list                         List external skills."
+  echo "  remove <target-path>         Remove an external skill."
+}
+
+# Returns 0 if the target key exists in the SKILLS section
+skills_has() {
+  awk -v key="$1" \
+    '/^# SKILLS/{f=1; next} f && $0 == "[\"" key "\"]"{found=1; exit} END{exit !found}' \
+    "$EXTERNALS_FILE"
+}
+
+cmd="${1:-}"
+shift || true
+
+case "$cmd" in
+add)
+  url="${1:-}"
+  if [[ -z "$url" ]]; then
+    echo "Usage: skills add <git-url> [target-path]"
+    exit 1
+  fi
+
+  repo_name=$(basename "$url" .git)
+  default_path=".local/share/skills/$repo_name"
+
+  target_path="${2:-}"
+  if [[ -z "$target_path" ]]; then
+    read -rp "Target path (relative to ~) [$default_path]: " target_path
+    target_path="${target_path:-$default_path}"
+  fi
+
+  if skills_has "$target_path"; then
+    echo "Error: '$target_path' already exists in skills externals"
+    exit 1
+  fi
+
+  printf '\n["%s"]\n    type = "git-repo"\n    url = "%s"\n    refreshPeriod = "720h"\n' \
+    "$target_path" "$url" >>"$EXTERNALS_FILE"
+
+  echo "Added '$target_path' to chezmoi externals."
+  read -rp "Run 'chezmoi apply' now? [Y/n]: " apply_now
+  if [[ "${apply_now:-Y}" =~ ^[Yy]$ ]]; then
+    chezmoi apply
+  fi
+  ;;
+
+list)
+  echo "Skills:"
+  awk '/^# SKILLS/{f=1; next} f && /^\["/{gsub(/["\[\]]/, ""); print}' "$EXTERNALS_FILE"
+  ;;
+
+remove)
+  target="${1:-}"
+  if [[ -z "$target" ]]; then
+    echo "Usage: skills remove <target-path>"
+    exit 1
+  fi
+
+  if ! skills_has "$target"; then
+    echo "Error: '$target' not found in skills externals"
+    exit 1
+  fi
+
+  awk -v target="$target" '
+      /^# SKILLS/ { skills=1 }
+      skills && $0 == "[\"" target "\"]" { skip=1; next }
+      skip && /^\["/ { skip=0 }
+      skip { next }
+      { print }
+    ' "$EXTERNALS_FILE" >"${EXTERNALS_FILE}.tmp" && mv "${EXTERNALS_FILE}.tmp" "$EXTERNALS_FILE"
+
+  echo "Removed '$target' from chezmoi externals."
+  read -rp "Run 'chezmoi apply' now? [Y/n]: " apply_now
+  if [[ "${apply_now:-Y}" =~ ^[Yy]$ ]]; then
+    chezmoi apply
+  fi
+  ;;
+
+*)
+  usage
+  [[ -z "$cmd" ]] || exit 1
+  ;;
+esac

@@ -1,0 +1,3 @@
+# Remove externally managed files
+~/.oh-my-zsh/cache/completions/
+

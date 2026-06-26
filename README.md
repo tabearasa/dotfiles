@@ -24,6 +24,10 @@ chezmoi chattr +template $FILE # must be "real dotfile"
 
 # Test template
 chezmoi execute-template < $TEMPLATE_FILE
+
+# Re-add a modified file from the target state (with safety mechanisms)
+# Useful for NVIM
+chezmoi re-add
 ```
 
 ## Personal Note
@@ -42,4 +46,6 @@ libraries can be biased. If you found a better source: let me know.)
 
 I don't need issues for this personal project, just a TODO list.
 
-* [ ] add glab skill for getting the image from a issue into the context.
+* [ ] write potential feature about removing deleted files from externally managed repos? `deleted file mode 100644`?
+
+
