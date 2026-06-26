@@ -1,0 +1,188 @@
+{
+  "version": 3,
+  "skills": {
+    "sentry-fix-issues": {
+      "source": "getsentry/sentry-for-ai",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/getsentry/sentry-for-ai.git",
+      "skillPath": "skills/sentry-fix-issues/SKILL.md",
+      "skillFolderHash": "c0f5bde3473dd62ce2ed8c3179e8e8ecfed6c0ee",
+      "installedAt": "2026-05-08T10:17:42.737Z",
+      "updatedAt": "2026-05-08T10:17:42.737Z"
+    },
+    "find-skills": {
+      "source": "vercel-labs/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/vercel-labs/skills.git",
+      "skillPath": "skills/find-skills/SKILL.md",
+      "skillFolderHash": "eb6a23305aea6e340d14b9de3766e721f9f4861b",
+      "installedAt": "2026-05-08T10:17:55.821Z",
+      "updatedAt": "2026-06-26T12:52:25.472Z"
+    },
+    "authoring-skills": {
+      "source": "gitlab-org/ai/skills",
+      "sourceType": "gitlab",
+      "sourceUrl": "https://gitlab.com/gitlab-org/ai/skills.git",
+      "skillPath": "skills/authoring-skills/SKILL.md",
+      "skillFolderHash": "f082a0a6b42b4b894df9fb52e65e83c7988ddd940674df26cd4252ac668a35a7",
+      "installedAt": "2026-06-26T13:11:27.559Z",
+      "updatedAt": "2026-06-26T13:11:27.559Z"
+    },
+    "commit-messages": {
+      "source": "gitlab-org/ai/skills",
+      "sourceType": "gitlab",
+      "sourceUrl": "https://gitlab.com/gitlab-org/ai/skills.git",
+      "skillPath": "skills/commit-messages/SKILL.md",
+      "skillFolderHash": "d38feb4b057916ad768874c11976d5de6387fc3d0c45c56437ac3da75dccfb60",
+      "installedAt": "2026-06-26T13:11:27.560Z",
+      "updatedAt": "2026-06-26T13:11:27.560Z"
+    },
+    "gitlab-babysit-mr": {
+      "source": "gitlab-org/ai/skills",
+      "sourceType": "gitlab",
+      "sourceUrl": "https://gitlab.com/gitlab-org/ai/skills.git",
+      "skillPath": "skills/gitlab-babysit-mr/SKILL.md",
+      "skillFolderHash": "568d4342431aff9cf0ee06be77d4aeb96b6c8eb97d18e7ddf4ee7485013f0cfc",
+      "installedAt": "2026-06-26T13:11:27.564Z",
+      "updatedAt": "2026-06-26T13:11:27.564Z"
+    },
+    "gitlab-clickhouse": {
+      "source": "gitlab-org/ai/skills",
+      "sourceType": "gitlab",
+      "sourceUrl": "https://gitlab.com/gitlab-org/ai/skills.git",
+      "skillPath": "skills/gitlab-clickhouse/SKILL.md",
+      "skillFolderHash": "0e0e6010eda46239b0076a700d951a4168a6d60c07faaa9c4ea19e5fb254f728",
+      "installedAt": "2026-06-26T13:11:27.566Z",
+      "updatedAt": "2026-06-26T13:11:27.566Z"
+    },
+    "gitlab-mr-description": {
+      "source": "gitlab-org/ai/skills",
+      "sourceType": "gitlab",
+      "sourceUrl": "https://gitlab.com/gitlab-org/ai/skills.git",
+      "skillPath": "skills/gitlab-mr-description/SKILL.md",
+      "skillFolderHash": "7a41d3655a0cbb5d159af923a758704eb1d7c41b77fc48696c985662bafbaf44",
+      "installedAt": "2026-06-26T13:11:27.567Z",
+      "updatedAt": "2026-06-26T13:11:27.567Z"
+    },
+    "gitlab-pipeline-watch": {
+      "source": "gitlab-org/ai/skills",
+      "sourceType": "gitlab",
+      "sourceUrl": "https://gitlab.com/gitlab-org/ai/skills.git",
+      "skillPath": "skills/gitlab-pipeline-watch/SKILL.md",
+      "skillFolderHash": "f9f9ea2436e33e5863ad5ea75e51cdcb8111e8620b8be3b5c396c7565d1a9c13",
+      "installedAt": "2026-06-26T13:11:27.569Z",
+      "updatedAt": "2026-06-26T13:11:27.569Z"
+    },
+    "gitlab-psql": {
+      "source": "gitlab-org/ai/skills",
+      "sourceType": "gitlab",
+      "sourceUrl": "https://gitlab.com/gitlab-org/ai/skills.git",
+      "skillPath": "skills/gitlab-psql/SKILL.md",
+      "skillFolderHash": "d09185d6d72440703595be3e5a06b140e3be5ed3096fff3ad5d027f91ff149de",
+      "installedAt": "2026-06-26T13:11:27.570Z",
+      "updatedAt": "2026-06-26T13:11:27.570Z"
+    },
+    "glab": {
+      "source": "gitlab-org/ai/skills",
+      "sourceType": "gitlab",
+      "sourceUrl": "https://gitlab.com/gitlab-org/ai/skills.git",
+      "skillPath": "skills/glab/SKILL.md",
+      "skillFolderHash": "cdc4c4d7e86407056053feea314ba9db6bcc782eb1b9bbcf4d7d7cfcf59d1395",
+      "installedAt": "2026-06-26T13:11:27.572Z",
+      "updatedAt": "2026-06-26T13:11:27.572Z"
+    },
+    "glab-glql": {
+      "source": "gitlab-org/ai/skills",
+      "sourceType": "gitlab",
+      "sourceUrl": "https://gitlab.com/gitlab-org/ai/skills.git",
+      "skillPath": "skills/glab-glql/SKILL.md",
+      "skillFolderHash": "21694fa5c162084411afbe727552b2338ff5810e502644f772afa50c5f7876be",
+      "installedAt": "2026-06-26T13:11:27.573Z",
+      "updatedAt": "2026-06-26T13:11:27.573Z"
+    },
+    "handoff": {
+      "source": "gitlab-org/ai/skills",
+      "sourceType": "gitlab",
+      "sourceUrl": "https://gitlab.com/gitlab-org/ai/skills.git",
+      "skillPath": "skills/handoff/SKILL.md",
+      "skillFolderHash": "e80bb136f34d88376ab85290722fb0178c48dea9286285ff556b644a697fd0f7",
+      "installedAt": "2026-06-26T13:11:27.574Z",
+      "updatedAt": "2026-06-26T13:11:27.574Z"
+    },
+    "mr-adversarial-review": {
+      "source": "gitlab-org/ai/skills",
+      "sourceType": "gitlab",
+      "sourceUrl": "https://gitlab.com/gitlab-org/ai/skills.git",
+      "skillPath": "skills/mr-adversarial-review/SKILL.md",
+      "skillFolderHash": "382035a853a23e589327b36ad1038ac781d054f9b79dc3e4850623890493c17b",
+      "installedAt": "2026-06-26T13:11:27.575Z",
+      "updatedAt": "2026-06-26T13:11:27.575Z"
+    },
+    "mr-review": {
+      "source": "gitlab-org/ai/skills",
+      "sourceType": "gitlab",
+      "sourceUrl": "https://gitlab.com/gitlab-org/ai/skills.git",
+      "skillPath": "skills/mr-review/SKILL.md",
+      "skillFolderHash": "c1e4be1f7fa39abed7cca4b666dc9cebe68e59c09bd877102d4ec40f893abe2b",
+      "installedAt": "2026-06-26T13:11:27.577Z",
+      "updatedAt": "2026-06-26T13:11:27.577Z"
+    },
+    "playwright-cli": {
+      "source": "gitlab-org/ai/skills",
+      "sourceType": "gitlab",
+      "sourceUrl": "https://gitlab.com/gitlab-org/ai/skills.git",
+      "skillPath": "skills/playwright-cli/SKILL.md",
+      "skillFolderHash": "80354090de488bf09882c423c9b5177fea0825ce78cecca997ed51e8edcb8215",
+      "installedAt": "2026-06-26T13:11:27.579Z",
+      "updatedAt": "2026-06-26T13:11:27.579Z"
+    },
+    "run-in-tmux-pane": {
+      "source": "gitlab-org/ai/skills",
+      "sourceType": "gitlab",
+      "sourceUrl": "https://gitlab.com/gitlab-org/ai/skills.git",
+      "skillPath": "skills/run-in-tmux-pane/SKILL.md",
+      "skillFolderHash": "0431f6f35c7fe52b02d4dd97bbf574297bf880ed56eb19dcc67fd6fa2118bdc6",
+      "installedAt": "2026-06-26T13:11:27.580Z",
+      "updatedAt": "2026-06-26T13:11:27.580Z"
+    },
+    "pushify": {
+      "source": "gitlab-org/ai/skills",
+      "sourceType": "gitlab",
+      "sourceUrl": "https://gitlab.com/gitlab-org/ai/skills.git",
+      "skillPath": "skills/pushify/SKILL.md",
+      "skillFolderHash": "88886f49194dc8bfed6bf08f46827ae809884775aefe7d1d66167f6671c60e56",
+      "installedAt": "2026-06-26T13:11:27.581Z",
+      "updatedAt": "2026-06-26T13:11:27.581Z"
+    },
+    "self-service-performance-testing": {
+      "source": "gitlab-org/ai/skills",
+      "sourceType": "gitlab",
+      "sourceUrl": "https://gitlab.com/gitlab-org/ai/skills.git",
+      "skillPath": "skills/self-service-performance-testing/SKILL.md",
+      "skillFolderHash": "4101323cffd3e3186b26867aec786bbadada19c3f08f2cda0f83e5ec1927d711",
+      "installedAt": "2026-06-26T13:11:27.583Z",
+      "updatedAt": "2026-06-26T13:11:27.583Z"
+    },
+    "stack-changes": {
+      "source": "gitlab-org/ai/skills",
+      "sourceType": "gitlab",
+      "sourceUrl": "https://gitlab.com/gitlab-org/ai/skills.git",
+      "skillPath": "skills/stack-changes/SKILL.md",
+      "skillFolderHash": "37890c3b7f17b32281183028952b9968df456e5d3a3b3efc1be3cb6a4c93ef31",
+      "installedAt": "2026-06-26T13:11:27.584Z",
+      "updatedAt": "2026-06-26T13:11:27.584Z"
+    },
+    "write-large-file": {
+      "source": "gitlab-org/ai/skills",
+      "sourceType": "gitlab",
+      "sourceUrl": "https://gitlab.com/gitlab-org/ai/skills.git",
+      "skillPath": "skills/write-large-file/SKILL.md",
+      "skillFolderHash": "919e135eca10f256b2f7576d45620fbea49c75980069b7596c5f7854d9272151",
+      "installedAt": "2026-06-26T13:11:27.585Z",
+      "updatedAt": "2026-06-26T13:11:27.585Z"
+    }
+  },
+  "dismissed": {
+    "findSkillsPrompt": true
+  }
+}
