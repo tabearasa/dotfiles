@@ -20,10 +20,13 @@ fi
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
+# Path for Homebrew
+export PATH=$PATH:/home/linuxbrew/.linuxbrew/bin
+
 # Add cargo path
 export PATH="$HOME/.cargo/bin:$PATH"
 
-# Add neovim Path
+# Add neovim Path https://neovim.io/doc/install/
 export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
 
 # Path to your Oh My Zsh installation.
@@ -134,17 +137,12 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 source $HOME/.aliases
 
-# Start ssh-agent if not already running
-if [ -z "$SSH_AUTH_SOCK" ]; then
-    eval "$(ssh-agent -s)" > /dev/null 2>&1
-fi
-
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # Custom color overrides — preserved across `p10k configure` runs.
 [[ ! -f ~/.p10k.colors.zsh ]] || source ~/.p10k.colors.zsh
-#
+
 # pnpm
 export PNPM_HOME="/home/tabula/.local/share/pnpm"
 case ":$PATH:" in
@@ -152,3 +150,12 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 
+# python
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - bash)"
+
+# NVM
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
