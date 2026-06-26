@@ -42,7 +42,3 @@
     stripComponents = 1
     refreshPeriod = "168h"
 
-# BE AWARE THIS IS A MARKER FOR THE CUSTOM skills command, TO MANAGE SKILLS WITH CHEZMOI
-# UGLY, BUT USEFUL
-# SKILLS
-

@@ -39,3 +39,6 @@ alias gdrop="git clean -f"
 
 # Custom git alias
 alias ghash="git rev-parse HEAD | xclip -selection clipboard"
+
+# Skills alias
+alias skills="pnpm dlx skills"
