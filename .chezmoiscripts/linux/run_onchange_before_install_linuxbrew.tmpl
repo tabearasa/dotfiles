@@ -1,0 +1,4 @@
+#!/bin/bash
+{{ if ne .company_computer "y" }}
+curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh
+{{ end }}
