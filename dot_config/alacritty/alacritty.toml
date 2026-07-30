@@ -12,3 +12,6 @@ blur = true
 normal = {family = "FiraCode Nerd Font", style = "Regular"}
 size = 10
 
+[[keyboard.bindings]]
+key = "F11"
+action = "ToggleFullscreen"
