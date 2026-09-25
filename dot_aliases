@@ -42,3 +42,30 @@ alias ghash="git rev-parse HEAD | xclip -selection clipboard"
 
 # Skills alias
 alias skills="pnpm dlx skills"
+
+# MQTT (mqttui). Connection details (broker, credentials, cert paths) are
+# NOT stored here — each profile is a separate untracked env file at
+# ~/.config/mqttui/<profile>.env, e.g. ~/.config/mqttui/prod.env:
+#   export MQTTUI_BROKER="mqtts://your-broker:8883"
+#   export MQTTUI_USERNAME="..."       # optional
+#   export MQTTUI_PASSWORD="..."       # optional
+#   export MQTTUI_CLIENT_CERTIFICATE="$HOME/path/to/cert.pem"   # optional
+#   export MQTTUI_CLIENT_PRIVATE_KEY="$HOME/path/to/key.pem"    # optional
+#   export MQTTUI_QOS=0                # optional
+#   export MQTTUI_INSECURE=1           # optional, allow self-signed TLS
+# Usage: mqtt <profile> ['topic']   e.g. mqtt prod, mqtt staging 'devices/#'
+# (named `mqtt`, not `mt` — `mt` is already the magnetic tape control command)
+mqtt() {
+  local profile="$1" topic="${2:-#}"
+  if [ -z "$profile" ]; then
+    echo "usage: mqtt <profile> ['topic']" >&2
+    return 1
+  fi
+  local env_file="$HOME/.config/mqttui/${profile}.env"
+  if [ ! -f "$env_file" ]; then
+    echo "mqtt: missing $env_file (see dot_aliases for the expected format)" >&2
+    return 1
+  fi
+  . "$env_file"
+  mqttui --client-id "mqttui-$(date +%s)" ${MQTTUI_INSECURE:+--insecure} "$topic"
+}
