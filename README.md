@@ -53,4 +53,8 @@ I don't need issues for this personal project, just a TODO list.
 
 * [ ] write potential feature about removing deleted files from externally managed repos? `deleted file mode 100644`?
 * [ ] add git lfs
+* [ ] add wsl as a separate type under chezmoiscripts?
+* [ ] tmux change doesn't work on linux, but on WSL!
+* [ ] ollama --> Homelab??
+* [ ] local model configuration?
 
