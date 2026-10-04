@@ -55,4 +55,19 @@ I don't need issues for this personal project, just a TODO list.
 * [ ] add wsl as a separate type under chezmoiscripts?
 * [ ] ollama --> Homelab??
 * [ ] local model configuration?
+* [ ] manage TODOs as GitHub issues in the long run, so install `gh` (GitHub CLI)
+* [ ] replace `curl <installer> | bash` install scripts. Options:
+  * chezmoi externals (`archive-file` + `gitHubLatestReleaseAssetURL`) for single binaries:
+    uv, pnpm, mitmproxy, the Nerd Font (as `archive`). No remote shell code runs; refreshes
+    like the other externals. Needs arch mapping (`amd64` vs. `x86_64`) and is subject to
+    GitHub API rate limits
+  * clone pyenv directly with git (that's all pyenv.run does), possibly as a `git-repo` external
+  * shared download-then-run helper in `.chezmoitemplates/` for the remaining installers
+    (rustup, Homebrew): `curl -fsSL` into a temp file, `bash -n`, then run it. Avoids running
+    truncated downloads
+  * verify upstream-published checksums at runtime (uv `.sha256`, rustup `rustup-init.sha256`,
+    Nerd Fonts `SHA-256.txt`). Catches corrupt downloads, not a compromised host
+  * package managers with verification: signed apt repos, Homebrew (personal only), or
+    mise/aqua for all CLI tools (biggest change, another tool to bootstrap)
+  * vendor the installers in this repo: reviewable diffs, but manual upkeep
 
