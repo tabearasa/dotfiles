@@ -51,10 +51,15 @@ libraries can be biased. If you found a better source: let me know.)
 
 I don't need issues for this personal project, just a TODO list.
 
-* [ ] write potential feature about removing deleted files from externally managed repos? `deleted file mode 100644`?
+### Prio 1
+
+* [ ] write potential feature about removing deleted files from externally managed repos? `deleted file mode 100644`? maybe add those files to chezmoiremove?
+* [ ] update neovim config on every machine?
 * [ ] add wsl as a separate type under chezmoiscripts?
-* [ ] ollama --> Homelab??
-* [ ] local model configuration?
+
+### Prio 2
+
+* [ ] ollama + local model configuration
 * [ ] manage TODOs as GitHub issues in the long run, so install `gh` (GitHub CLI)
 * [ ] replace `curl <installer> | bash` install scripts. Options:
   * chezmoi externals (`archive-file` + `gitHubLatestReleaseAssetURL`) for single binaries:
