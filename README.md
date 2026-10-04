@@ -53,7 +53,6 @@ I don't need issues for this personal project, just a TODO list.
 
 ### Prio 1
 
-* [ ] update neovim config on every machine?
 * [ ] get rid of the autoCommit and autoPush behaviour and update agents.md
 
 ### Prio 2
