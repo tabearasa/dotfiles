@@ -3,9 +3,10 @@
 
 # Install Rust to build alacritty
 # https://doc.rust-lang.org/cargo/getting-started/installation.html
-if [ ! command -v rustc >/dev/null 2>&1 ]; then
-    curl https://sh.rustup.rs -sSf | sh
+if ! command -v rustc >/dev/null 2>&1; then
+    curl https://sh.rustup.rs -sSf | sh -s -- -y
 fi
+[ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
 
 # Install alacritty for personal debian-based systems
 # https://github.com/alacritty/alacritty/blob/master/INSTALL.md
