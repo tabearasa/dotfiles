@@ -7,15 +7,6 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# TODO
-# Skip P10k entirely in VSCode-Insiders, as there is bug for the terminal
-# usage of copilot
-# https://www.atpeaz.com/vscode-terminal-hanging/
-#if [[ "$TERM_PROGRAM" == "vscode-insiders" ]]; then
-#  # Use a simple, clean prompt for VSCode
-#  PROMPT='%F{cyan}%~%f %F{green}❯%f '
-#  VSCODE_SKIP_P10K=1
-#fi
 # Keep only the first occurrence of each PATH entry (PATH is also inherited from ~/.profile and parent shells)
 typeset -U path
 
