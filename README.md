@@ -51,12 +51,6 @@ libraries can be biased. If you found a better source: let me know.)
 
 I don't need issues for this personal project, just a TODO list.
 
-### Prio 1
-
-* [ ] get rid of the autoCommit and autoPush behaviour and update agents.md
-
-### Prio 2
-
 * [ ] ollama + local model configuration
 * [ ] manage TODOs as GitHub issues in the long run, so install `gh` (GitHub CLI)
 * [ ] replace `curl <installer> | bash` install scripts. Options:
