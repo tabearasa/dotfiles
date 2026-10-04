@@ -56,6 +56,7 @@ I don't need issues for this personal project, just a TODO list.
 * [ ] write potential feature about removing deleted files from externally managed repos? `deleted file mode 100644`? maybe add those files to chezmoiremove?
 * [ ] update neovim config on every machine?
 * [ ] add wsl as a separate type under chezmoiscripts?
+* [ ] get rid of the autoCommit and autoPush behaviour and update agents.md
 
 ### Prio 2
 
