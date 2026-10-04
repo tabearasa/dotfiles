@@ -5,3 +5,7 @@ AGENTS.md
 {{ if not (stat "/etc/X11/Xsession") }}
 .xsessionrc
 {{ end }}
+
+# Oh My Zsh writes its cache at runtime; the external is exact = true,
+# so without this chezmoi would delete it on every apply
+.oh-my-zsh/cache/**
