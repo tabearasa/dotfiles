@@ -1,9 +1,13 @@
 #!/bin/sh
 
+# Runs first (00_ prefix): the other install scripts rely on curl, git, unzip etc.
+sudo apt-get update
+
 # ========== Install Packages for Development ==========
 {{ $dev_packages := list
     "tmux"
     "git"
+    "make"
     "neovim"
     "zsh"
     "fd-find"
@@ -12,6 +16,9 @@
     "jq"
     "direnv"
     "catimg"
+    "pandoc"
+    "unzip"
+    "fontconfig"
 -}}
 
 sudo apt-get install -y {{$dev_packages | join " " }}
@@ -31,7 +38,11 @@ sudo apt-get install -y {{ $network_packages | join " " }}
 # ========== Install Packages for Personal Machines Only ==========
 {{ if ne .company_computer "y" -}}
 sudo apt-get install -y keepassxc
-sudo apt-get install -y direnv
+#Freecad!
+#blender
+#kicad?
+#darktable
+#brave browser?
 {{- end }}
 
 # ========== Install Neovim from GitHub Releases (>= 0.11.2 for LazyVim v15) ==========
@@ -41,4 +52,3 @@ sudo apt-get install -y direnv
 #sudo tar -C /opt -xzf nvim-linux-x86_64.tar.gz
 #sudo ln -sf /opt/nvim-linux-x86_64/bin/nvim /usr/local/bin/nvim
 #rm -f nvim-linux-x86_64.tar.gz
-
