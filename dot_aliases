@@ -28,7 +28,7 @@ alias .....="cd ../../../.."
 
 # Docker
 alias dps="docker ps"
-alias dsa="docker stop $(docker ps -q)" # Stop all docker containers
+alias dsa='docker stop $(docker ps -q)' # Stop all docker containers
 alias dcu="docker compose up -d"
 alias dcd="docker compose down"
 alias dcrs="docker compose down && docker compose up -d"
