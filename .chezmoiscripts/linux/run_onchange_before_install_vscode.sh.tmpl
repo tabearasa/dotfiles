@@ -1,5 +1,7 @@
+{{ if not (.chezmoi.kernel.osrelease | lower | contains "microsoft") -}}
 #!/bin/bash
-if command code-insiders -v > /dev/null; then
+# Skipped on WSL: use Windows VS Code with the Remote - WSL extension instead
+if command -v code-insiders > /dev/null; then
     echo "VSCode Insiders is already installed"
 else
     echo "====== Installing VSCode Insiders ======"
@@ -8,16 +10,17 @@ else
     sudo install -D -o root -g root -m 644 microsoft.gpg /usr/share/keyrings/microsoft.gpg &&
     rm -f microsoft.gpg
 
-    cat > /etc/apt/sources.list.d/vscode.sources << "EOF"
-    Types: deb
-    URIs: https://packages.microsoft.com/repos/code
-    Suites: stable
-    Components: main
-    Architectures: amd64,arm64,armhf
-    Signed-By: /usr/share/keyrings/microsoft.gpg
+    sudo tee /etc/apt/sources.list.d/vscode.sources > /dev/null << "EOF"
+Types: deb
+URIs: https://packages.microsoft.com/repos/code
+Suites: stable
+Components: main
+Architectures: amd64,arm64,armhf
+Signed-By: /usr/share/keyrings/microsoft.gpg
 EOF
 
-    sudo apt install apt-transport-https
+    sudo apt install -y apt-transport-https
     sudo apt update
-    sudo apt install code-insiders
+    sudo apt install -y code-insiders
 fi
+{{ end -}}
