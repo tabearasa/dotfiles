@@ -1,3 +1,6 @@
 # Remove externally managed files
 ~/.oh-my-zsh/cache/completions/
 
+
+# Removed from the repo: bash login shells should read ~/.profile instead
+.bash_profile

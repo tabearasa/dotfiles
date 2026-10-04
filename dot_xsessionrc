@@ -1,0 +1,5 @@
+# Sourced by Debian's /etc/X11/Xsession (dash, set -e), which does not read ~/.profile.
+# Pulls in ~/.profile so GUI apps get the same PATH as login shells.
+if [ -r "$HOME/.profile" ] ; then
+    . "$HOME/.profile"
+fi

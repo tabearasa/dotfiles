@@ -18,6 +18,11 @@ export PATH="$PATH:/opt/nvim-linux64/bin"
 export PATH="$PATH:$HOME/bin"
 export PATH="$HOME/.local/bin:$PATH"
 
+# Add pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - bash)"
+
 {{ if ne .company_computer "y" }}
 # TODO: Add texlive to PATH
 #export PATH="$PATH:/usr/local/texlive/2025/bin/x86_64-linux"
