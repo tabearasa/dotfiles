@@ -23,6 +23,7 @@ echo "====== Installing mitmproxy $MITMPROXY_VERSION ======"
 mkdir -p "$INSTALL_DIR"
 curl -fsSL "https://downloads.mitmproxy.org/$MITMPROXY_VERSION/mitmproxy-$MITMPROXY_VERSION-linux-$ARCH.tar.gz" |
     tar -xz -C "$INSTALL_DIR" mitmproxy mitmdump mitmweb
+{{- /* WSL: WSL kernels report e.g. "...-microsoft-standard-WSL2" as osrelease */ -}}
 {{- if .chezmoi.kernel.osrelease | lower | contains "microsoft" }}
 
 # WSL: Windows apps must trust the CA before their HTTPS traffic can be intercepted

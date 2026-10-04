@@ -1,3 +1,4 @@
+{{- /* WSL: WSL kernels report e.g. "...-microsoft-standard-WSL2" as osrelease */ -}}
 {{ if not (.chezmoi.kernel.osrelease | lower | contains "microsoft") -}}
 #!/bin/bash
 # Skipped on WSL: use Windows VS Code with the Remote - WSL extension instead
