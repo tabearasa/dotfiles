@@ -83,6 +83,7 @@ Scripts run in alphabetical order; all are `run_onchange_before_*` so they re-tr
 | `run_onchange_before_install_alacritty.sh.tmpl` | Builds Alacritty from source via Cargo (personal machines only) |
 | `run_onchange_before_install_font.sh.tmpl` | Downloads and installs FiraCode Nerd Font (personal machines only) |
 | `run_onchange_before_install_linuxbrew.sh.tmpl` | Installs Homebrew (personal machines only) |
+| `run_onchange_before_install_mitmproxy.sh.tmpl` | Installs pinned mitmproxy standalone binaries (`MITMPROXY_VERSION`) to `~/.local/bin`; on WSL also prints how to trust the CA in Windows |
 | `run_onchange_before_install_pnpm.sh` | Installs the `pnpm` package manager |
 | `run_onchange_before_install_pyenv.sh` | Installs `pyenv` to `~/.pyenv` via pyenv.run (build deps come from the packages script) |
 | `run_onchange_before_install_uv.sh` | Installs `uv` Python package manager |
