@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Not in Debian trixie's apt repos, so install the standalone binaries as recommended upstream.
+# https://docs.mitmproxy.org/stable/overview/installation/#linux
+# WSL uses the same Linux binaries (the docs say to follow the Linux instructions there).
+# Pinned version: bump it here to upgrade (changing it also re-triggers this run_onchange script).
+MITMPROXY_VERSION="12.2.3"
+INSTALL_DIR="$HOME/.local/bin"
+
+if [ -x "$INSTALL_DIR/mitmdump" ] && "$INSTALL_DIR/mitmdump" --version | grep -q "Mitmproxy: $MITMPROXY_VERSION "; then
+    echo "mitmproxy $MITMPROXY_VERSION is already installed."
+    exit 0
+fi
+
+case "$(uname -m)" in
+    x86_64) ARCH="x86_64" ;;
+    aarch64 | arm64) ARCH="aarch64" ;;
+    *) echo "mitmproxy: unsupported architecture $(uname -m), skipping." && exit 0 ;;
+esac
+
+echo "====== Installing mitmproxy $MITMPROXY_VERSION ======"
+mkdir -p "$INSTALL_DIR"
+curl -fsSL "https://downloads.mitmproxy.org/$MITMPROXY_VERSION/mitmproxy-$MITMPROXY_VERSION-linux-$ARCH.tar.gz" |
+    tar -xz -C "$INSTALL_DIR" mitmproxy mitmdump mitmweb
+{{- if .chezmoi.kernel.osrelease | lower | contains "microsoft" }}
+
+# WSL: Windows apps must trust the CA before their HTTPS traffic can be intercepted
+echo "mitmproxy: run it once to generate ~/.mitmproxy/mitmproxy-ca-cert.cer, then import that"
+echo "certificate into Windows (certmgr.msc > Trusted Root Certification Authorities)."
+{{- end }}
