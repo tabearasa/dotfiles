@@ -55,6 +55,10 @@ sudo apt-get install -y {{ $pyenv_build_packages | join " " }}
 
 sudo apt-get install -y {{ $network_packages | join " " }}
 
+# ========== Install Docker ==========
+sudo apt-get install -y docker.io docker-compose
+sudo usermod -aG docker "$USER"
+
 # ========== Install Packages for Personal Machines Only ==========
 {{ if ne .company_computer "y" -}}
 sudo apt-get install -y keepassxc
