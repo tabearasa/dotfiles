@@ -4,6 +4,10 @@
 {{- $work_email := promptStringOnce . "work_email" "work_email" -}}
 {{- $company_computer := promptStringOnce . "company_computer" "is_this_your_company_computer_[y/n]" -}}
 {{- $keepassxc_db := promptStringOnce . "keepassxc_db" "path_to_keepassxc_database" -}}
+{{- $work_git_host := "" -}}
+{{- if eq $company_computer "y" -}}
+{{-   $work_git_host = promptStringOnce . "work_git_host" "work_git_host_(e.g._github.example.com)" -}}
+{{- end -}}
 
 [edit]
     command = "nvim"
@@ -19,6 +23,9 @@
     work_email = "{{ $work_email }}"
     company_computer = "{{ $company_computer }}"
     keepassxc_db = "{{ $keepassxc_db }}"
+{{- if eq $company_computer "y" }}
+    work_git_host = "{{ $work_git_host }}"
+{{- end }}
 
 {{ if ne $company_computer "y" -}}
 [keepassxc]

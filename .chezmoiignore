@@ -11,3 +11,8 @@ install.sh
 # Oh My Zsh writes its cache at runtime; the external is exact = true,
 # so without this chezmoi would delete it on every apply
 .oh-my-zsh/cache/**
+
+# Work git identity only exists on company computers
+{{ if ne .company_computer "y" }}
+.gitconfig_work
+{{ end }}
