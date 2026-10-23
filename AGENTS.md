@@ -1,19 +1,37 @@
 # AGENTS.md
 
-This file provides guidance to AI coding agents when working with code in this repository.
-
-## What This Repository Is
-
 A personal dotfiles repository managed by [chezmoi](https://chezmoi.io). Chezmoi copies (not symlinks) files from this source directory into the home directory, applying templates along the way.
 
+## Warning: chezmoi auto-commits and auto-pushes
+
+`.chezmoi.toml.tmpl` sets `[git] autoCommit = true` and `autoPush = true`. Every chezmoi command that modifies the source directory (`chezmoi add`, `chezmoi edit`, `chezmoi chattr`, `chezmoi forget`, `chezmoi re-add`) commits the **entire working tree**, including unrelated uncommitted work, under a generated message, and then pushes it to GitHub.
+
+Agents must not run these commands. Create or edit files in this source directory directly (e.g. `cp ~/.profile dot_profile`), and leave committing to the user. Only the read-only commands above are safe.
+
 ## Common Commands
+
+Read-only, safe for agents:
+
+```bash
+# Preview what changes would be made
+chezmoi diff
+
+# Test template rendering without applying
+chezmoi execute-template < $TEMPLATE_FILE
+
+# Show the rendered target of a managed file
+chezmoi cat ~/.some_dotfile
+
+# Check which targets are managed or ignored (e.g. after editing .chezmoiignore)
+chezmoi managed
+chezmoi ignored
+```
+
+User only (see the warning below):
 
 ```bash
 # Apply changes from this repo to the home directory
 chezmoi apply
-
-# Preview what changes would be made
-chezmoi diff
 
 # Add/update a managed dotfile
 chezmoi add ~/.some_dotfile
@@ -21,18 +39,9 @@ chezmoi add ~/.some_dotfile
 # Convert an existing managed file to a template
 chezmoi chattr +template $FILE   # file must be the "real" dotfile path
 
-# Test template rendering without applying
-chezmoi execute-template < $TEMPLATE_FILE
-
 # Edit a managed file and apply immediately
 chezmoi edit --apply ~/.some_dotfile
 ```
-
-### Warning: chezmoi auto-commits and auto-pushes
-
-`.chezmoi.toml.tmpl` sets `[git] autoCommit = true` and `autoPush = true`. Every chezmoi command that modifies the source directory (`chezmoi add`, `chezmoi edit`, `chezmoi chattr`, `chezmoi forget`, `chezmoi re-add`) commits the **entire working tree**, including unrelated uncommitted work, under a generated message, and then pushes it to GitHub.
-
-Agents must not run these commands. Create or edit files in this source directory directly (e.g. `cp ~/.profile dot_profile`), and leave committing to the user. Read-only commands (`chezmoi diff`, `chezmoi execute-template`, `chezmoi cat`) are safe.
 
 ## Repository Architecture
 
@@ -42,6 +51,8 @@ Agents must not run these commands. Create or edit files in this source director
 - `.tmpl` suffix → processed as a Go template before being written
 - `run_onchange_before_*.sh` → scripts that re-run only when their content changes, before applying dotfiles
 - Files in `.chezmoiscripts/linux/` → only executed on Linux
+- Any other file in the repo root (no `dot_` prefix, no leading `.`) is copied to `~` as is, so repo-only files (`README.md`, `AGENTS.md`, `CLAUDE.md`, `install.sh`) must be listed in `.chezmoiignore`. `.chezmoiignore` is itself a template and also holds the machine-specific ignores
+- `.chezmoiremove` → targets chezmoi deletes from `~` (files that were dropped from the repo, e.g. `.bash_profile`)
 
 ### Machine Differentiation
 
@@ -57,10 +68,12 @@ Personal-only features gated behind `{{ if ne .company_computer "y" }}`: Alacrit
 
 Defined in `.chezmoi.toml.tmpl` and prompted once at init:
 
-- `github_name`, `github_email` — personal GitHub identity
+- `github_name`, `github_email` — personal GitHub identity (`github_name` doubles as the GitHub login in the gitconfig remote patterns; `github_email` is the GitHub noreply address)
 - `git_work_name`, `work_email` — work git identity
 - `company_computer` — `"y"` / `"n"` flag
 - `keepassxc_db` — path to the KeePassXC `.kdbx` database file (used for secret management)
+- `work_git_host` — host of the work git server (e.g. `gitlab.example.com`), only prompted on company computers. Never write the real value into this repo
+- `install_freecad`, `install_blender`, `install_kicad`, `install_darktable`, `install_btop`, `install_brave` — booleans, only prompted on personal machines; the packages script installs each app that was answered with yes
 
 ### External Dependencies
 
@@ -104,10 +117,15 @@ Scripts run in alphabetical order; all are `run_onchange_before_*` so they re-tr
 | `dot_aliases` | `~/.aliases` | Shared aliases sourced by both shells |
 | `dot_profile` | `~/.profile` | Login PATH (`~/bin`, `~/.local/bin`, pyenv shims); POSIX sh only |
 | `dot_xsessionrc` | `~/.xsessionrc` | Sourced by Debian's Xsession (`set -e`); sources `~/.profile` so GUI apps get the PATH. Only installed where `/etc/X11/Xsession` exists (`.chezmoiignore`) |
-| `dot_gitconfig.tmpl` | `~/.gitconfig` | Switches identity by directory via `includeIf` |
-| `dot_gitconfig_personal.tmpl` | `~/.gitconfig_personal` | Personal identity for `~/github/` |
+| `dot_gitconfig.tmpl` | `~/.gitconfig` | No global identity (`user.useConfigOnly`); picks the identity by remote URL via `includeIf "hasconfig:remote.*.url:..."` |
+| `dot_gitconfig_personal.tmpl` | `~/.gitconfig_personal` | Personal identity for `github.com/<github_name>/` remotes |
+| `dot_gitconfig_work.tmpl` | `~/.gitconfig_work` | Work identity for `work_git_host` remotes; company computers only (`.chezmoiignore`) |
+| `dot_p10k.zsh`, `dot_p10k.colors.zsh` | `~/.p10k.zsh`, `~/.p10k.colors.zsh` | Powerlevel10k prompt config |
 | `dot_tmux.conf` | `~/.tmux.conf` | Catppuccin theme, CPU plugin, custom keybindings |
 | `dot_config/alacritty/` | `~/.config/alacritty/` | FiraCode font, terminal settings |
+| `dot_config/nvim/` | `~/.config/nvim/` | LazyVim; own plugin specs in `lua/plugins/`. `lazy-lock.json` is intentionally not tracked |
+| `dot_agents/skills/` | `~/.agents/skills/` | Agent skills shared by all coding agents; `dot_agents/dot_skill-lock.json` tracks the skills installed from GitHub |
+| `dot_claude/symlink_skills.tmpl` | `~/.claude/skills` | Symlink to `~/.agents/skills`, so Claude Code uses the same skills |
 
 ### KeePassXC Secret Management
 
