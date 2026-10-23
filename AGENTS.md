@@ -73,6 +73,10 @@ Managed in `.chezmoiexternal.toml` — chezmoi downloads and places these automa
 - `~/.config/tmux/plugins/catppuccin/tmux`, `~/.config/tmux/plugins/cpu` and `~/.config/tmux/plugins/battery` — git-repos, monthly refresh (`battery` is downloaded but not currently loaded by `dot_tmux.conf`)
 - `~/.zplug` — zplug, git-repo, monthly refresh (downloaded but not referenced by any dotfile)
 
+### Bootstrap Script (`install.sh`)
+
+Run once on a fresh machine, before chezmoi exists (`curl ... | sh`, POSIX sh): installs `git`, installs chezmoi to `~/.local/bin` and runs `chezmoi init --apply tabearasa`. Listed in `.chezmoiignore`, so it is not copied to `~`.
+
 ### Installation Scripts (`.chezmoiscripts/linux/`)
 
 Scripts run in alphabetical order; all are `run_onchange_before_*` so they re-trigger only when their content changes:

@@ -1,6 +1,7 @@
 README.md
 AGENTS.md
 CLAUDE.md
+install.sh
 
 # ~/.xsessionrc is only read by Debian's /etc/X11/Xsession (Debian/Ubuntu X11 logins)
 {{ if not (stat "/etc/X11/Xsession") }}

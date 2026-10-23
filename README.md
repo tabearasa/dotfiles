@@ -2,17 +2,14 @@
 
 My dotfile journal. These notes are for my future self, for a quick reference when setting up the next machine.
 
-## Setup
+## Installation
 
 ```bash
-sudo apt-get update && sudo apt-get install -y curl git
-export PATH="$HOME/.local/bin:$PATH"
-sh -c "$(curl -fsLS get.chezmoi.io)" -- -b "$HOME/.local/bin" init --apply tabearasa
+curl -fsSL https://raw.githubusercontent.com/tabearasa/dotfiles/main/install.sh | sh
+# The init clones via HTTPS, so no SSH key is needed. Because `autoPush` is enabled, switch the
+# remote to SSH once a key is set up:
+# `chezmoi git -- remote set-url origin git@github.com:tabearasa/dotfiles.git`
 ```
-
-The init clones via HTTPS, so no SSH key is needed. Because `autoPush` is enabled, switch the
-remote to SSH once a key is set up:
-`chezmoi git -- remote set-url origin git@github.com:tabearasa/dotfiles.git`
 
 All templates share a common base definition. The tools I use for work and personal
 development can differ, so I defined the chezmoi custom data field `company_computer`
