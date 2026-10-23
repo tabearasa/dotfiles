@@ -62,9 +62,21 @@ sudo usermod -aG docker "$USER"
 # ========== Install Packages for Personal Machines Only ==========
 {{ if ne .company_computer "y" -}}
 sudo apt-get install -y keepassxc
-#Freecad!
-#blender
-#kicad?
-#darktable
-#brave browser?
+
+# Optional apps, chosen via the install_* prompts at `chezmoi init` (.chezmoi.toml.tmpl)
+{{ $optional_packages := list -}}
+{{ range list "freecad" "blender" "kicad" "darktable" "btop" -}}
+{{   if index $ (printf "install_%s" .) }}{{ $optional_packages = append $optional_packages . }}{{ end -}}
+{{ end -}}
+{{ if $optional_packages -}}
+sudo apt-get install -y {{ $optional_packages | join " " }}
+{{ end -}}
+
+{{ if index . "install_brave" -}}
+# Brave is not in the Debian repos: https://brave.com/linux/#debian-ubuntu-mint
+sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
+sudo curl -fsSLo /etc/apt/sources.list.d/brave-browser-release.sources https://brave-browser-apt-release.s3.brave.com/brave-browser.sources
+sudo apt-get update
+sudo apt-get install -y brave-browser
+{{ end -}}
 {{- end }}

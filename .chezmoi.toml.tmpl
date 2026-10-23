@@ -8,6 +8,15 @@
 {{- if eq $company_computer "y" -}}
 {{-   $work_git_host = promptStringOnce . "work_git_host" "work_git_host_(e.g._github.example.com)" -}}
 {{- end -}}
+{{- /* Optional apps for personal machines, installed by run_onchange_before_00_install_packages */ -}}
+{{- $optional_apps := list "freecad" "blender" "kicad" "darktable" "btop" "brave" -}}
+{{- $install := dict -}}
+{{- if ne $company_computer "y" -}}
+{{-   range $optional_apps -}}
+{{-     $key := printf "install_%s" . -}}
+{{-     $_ := set $install $key (promptBoolOnce $ $key (printf "install_%s_[y/n]" .)) -}}
+{{-   end -}}
+{{- end -}}
 
 [edit]
     command = "nvim"
@@ -25,6 +34,9 @@
     keepassxc_db = "{{ $keepassxc_db }}"
 {{- if eq $company_computer "y" }}
     work_git_host = "{{ $work_git_host }}"
+{{- end }}
+{{- range $key, $value := $install }}
+    {{ $key }} = {{ $value }}
 {{- end }}
 
 {{ if ne $company_computer "y" -}}
